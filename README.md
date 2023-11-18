@@ -787,7 +787,34 @@ Helps you write cleaner code.
 
 
 ## Directives 
+## Computed
 
+```
+<template>
+  <div>{{firstName}} {{lastName}}</div>
+  <div>Computed Fullname- {{fullName}}</div>
+
+</template>
+
+<script>
+  export default{
+    name: "App", 
+    data(){
+      return{
+        firstName: "jeffy",
+        lastName: "mahin"
+      };
+    },
+    methods: {
+    },
+    computed:{
+      fullName(){
+        return `${this.firstName} ${this.lastName}`
+      }
+    }
+  };
+</script>
+```
 ## Computed Properties vs Methods 
 ## Computer Properties vs v-for 
 ## Computed Setter 
