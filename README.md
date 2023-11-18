@@ -558,8 +558,236 @@ Using **v-on** directive.
 
 
 ## Form Handling 
+
+Various form handling types_
+1. Capture user inputs. 
+2. Inputs
+3. Text Areas
+4. Single select dropdown control
+5. Multi select control
+6. Checkbox
+7. Checkbox group
+8. Radio 
+9. Submit form data. 
+
+Form Control(template) <---v-model(two way binding)---> Form Data(script)
+
+
+```
+<template>
+  <h2>Form Handling</h2>
+  <div>
+    <pre>
+      {{ JSON.stringify(formValues, null, 2) }}
+    </pre>
+  </div>
+
+  <form>
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" id="name" v-model="formValues.name">
+    </div>
+  </form>
+</template>
+
+<script>
+  export default{
+    name: "App", 
+    data(){
+      return{
+        formValues: {
+          name: ''
+        }
+      };
+    },
+    methods: {
+    }
+  };
+</script>
+```
+
+```
+<template>
+  <h2>Form Handling</h2>
+  <div>
+    <pre>
+      {{ JSON.stringify(formValues, null, 2) }}
+    </pre>
+  </div>
+
+  <form>
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" id="name" v-model="formValues.name">
+    </div>
+
+
+    <div>
+      <label for="country">Country: </label>
+      <select name="" id="country" v-model="formValues.country">
+        <option value="">Select a country</option>
+        <option value="india">India</option>
+        <option value="bangladesh">Bangladesh</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="job-location">Job Location: </label>
+      <select name="" id="job-location" multiple v-model="formValues.jobLocation">
+        <option value="india">India</option>
+        <option value="bangladesh">Bangladesh</option>
+        <option value="usa">USA</option>
+      </select>
+    </div>
+    
+  </form>
+</template>
+
+<script>
+  export default{
+    name: "App", 
+    data(){
+      return{
+        formValues: {
+          name: '',
+          country: '',
+          jobLocation: []
+
+        }
+      };
+    },
+    methods: {
+
+    }
+  };
+</script>
+```
+
+```
+<template>
+  <h2>Form Handling</h2>
+  <div>
+    <pre>
+      {{ JSON.stringify(formValues, null, 2) }}
+    </pre>
+  </div>
+
+  <form @submit="submitForm">
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" id="name" v-model="formValues.name">
+    </div>
+
+
+    <div>
+      <label for="country">Country: </label>
+      <select name="" id="country" v-model="formValues.country">
+        <option value="">Select a country</option>
+        <option value="india">India</option>
+        <option value="bangladesh">Bangladesh</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="job-location">Job Location: </label>
+      <select name="" id="job-location" multiple v-model="formValues.jobLocation">
+        <option value="india">India</option>
+        <option value="bangladesh">Bangladesh</option>
+        <option value="usa">USA</option>
+      </select>
+    </div>
+    
+    <div>
+      <input type="checkbox" id="remoteWork" v-model="formValues.remoteWork" true-value="yes" false-value="no">
+      <label for="remoteWork">Remote Work?: </label>
+    </div>
+    
+
+    <div>
+      <label>Skill Sets: </label>
+
+      <input type="checkbox" id="html" value="html" v-model="formValues.skillSet">
+      <label for="html">HTML</label>
+
+      <input type="checkbox" id="css" value="css" v-model="formValues.skillSet">
+      <label for="css">CSS</label>
+
+      <input type="checkbox" id="js" value="js" v-model="formValues.skillSet">
+      <label for="js">Javascript</label>
+    </div>
+
+    <div>
+      <label>Experience: </label>
+      <input type="radio" id="0-2" value="0-2" v-model="formValues.yearsOfExperience"/>
+      <label for="0-2">0-2</label>
+
+      <input type="radio" id="2-5" value="2-5" v-model="formValues.yearsOfExperience"/>
+      <label for="2-5">2-5</label>
+    </div>
+
+    <div>
+      <button>Submit</button>
+    </div>
+
+
+  </form>
+</template>
+
+<script>
+  export default{
+    name: "App", 
+    data(){
+      return{
+        formValues: {
+          name: '',
+          country: '',
+          jobLocation: [],
+          remoteWork: "no",
+          skillSet: [],
+          yearsOfExperience: ""
+
+        }
+      };
+    },
+    methods: {
+      submitForm(event){
+        event.preventDefault()
+        console.log("form Values: ", this.formValues)
+      }
+    }
+  };
+</script>
+```
+
+
 ## Modifier 
+A suffic you can add to either the v-on directive or the v-model directive to add some functionality inline within the template. 
+Helps you write cleaner code. 
+
+1. Trim modifier- remove whitespace. 
+```
+<div>
+  <label for="name">Name: </label>
+  <input type="text" id="name" v-model.trim="formValues.name">
+</div>
+```
+
+2. Number modifier - Ensures the given input is a number. 
+```.number```
+
+3. Lazy modifier - Prevents binds on each key-strokes. 
+```.lazy```
+
+4. Prevent modifier - Prevents from re-loading. 
+```.prevent```
+
+5. Key modifier - Prevents submit by pressing enter in form.
+```@keyup.enter```
+
+
+
 ## Directives 
+
 ## Computed Properties vs Methods 
 ## Computer Properties vs v-for 
 ## Computed Setter 
