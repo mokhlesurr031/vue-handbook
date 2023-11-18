@@ -412,10 +412,151 @@ There are 4 conditional directives.
 </script>
 ```
 
+**v-show** is used for conditionally showing HTML element. 
+
+```
+<template>
+  <h2 v-show="showElement">V-Show Element</h2>
+  <h2 v-show="showElementAgain">V-Show Element</h2>
+
+
+</template>
+
+<script>
+  export default{
+    name: "App", 
+    data(){
+      return{
+        showElement: true,
+        showElementAgain: false,
+      };
+    },
+
+  };
+</script>
+```
+
 ## List Rendering
-## Lists and keys 
+Using **v-for** directive which represents_
+1. Array of strings
+
+```
+<template>
+  <h2 v-for="(name, index) in names" :key="name" v-show="showElement"> {{index}} {{ name }}</h2>
+</template>
+
+<script>
+  export default{
+    name: "App", 
+    data(){
+      return{
+        names: ['name1', 'name2', 'name3'],
+        showElement: true,
+      };
+    },
+
+  };
+</script>
+```
+2. Array of objects. 
+```
+<template>
+  <h2 v-for="fullName in fullNames" :key="fullName" v-show="showElement"> {{ fullName.first }} {{fullName.last}}</h2>
+</template>
+
+<script>
+  export default{
+    name: "App", 
+    data(){
+      return{
+        fullNames: [
+          {first: 'Bruce', last: 'Lee'},
+          {first: 'Jeffy', last: 'Mahin'}
+        ],
+        showElement: true,
+      };
+    },
+
+  };
+</script>
+```
+
+3. Array of arrays. 
+4. Block of HTML elements. 
+5. Object key-value pairs. 
+
 ## Methods 
+
+```
+<template>
+  <h2>Add Method-{{ add(3,4) }}</h2>
+  <h2>Div Method-{{ div(3,4) }}</h2>
+  <h2>baseMultiply Method-{{ addToBaseMultiply() }}</h2>
+</template>
+
+
+<script>
+  export default{
+    name: "App", 
+    data(){
+      return{
+        baseMultiply: 5
+      };
+    },
+    methods: {
+      add(a,b){
+        return a+b;
+      },
+      div(a,b){
+        return a/b;
+      },
+      addToBaseMultiply(){
+        return 5+this.baseMultiply
+      }
+    },
+  };
+</script>
+```
+
 ## Event Handling 
+Using **v-on** directive. 
+
+```
+<template>
+  <h2>{{ name }}</h2>
+  <button v-on:click="name='Batman'">Click Me</button>
+
+  <h2>{{count}}</h2>
+  <div>
+    <button v-on:click="increment">Increment</button>
+    <button @click="decrement">Decrement</button>
+  </div>
+
+</template>
+
+<script>
+  export default{
+    name: "App", 
+    data(){
+      return{
+        name: "Mahin",
+        count: 0
+      };
+    },
+    methods: {
+      increment(){
+        this.count++
+      },
+      decrement(){
+        this.count--
+      }
+    }
+
+  };
+</script>
+```
+
+
 ## Form Handling 
 ## Modifier 
 ## Directives 

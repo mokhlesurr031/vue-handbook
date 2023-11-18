@@ -1,7 +1,12 @@
 <template>
-  <h2 v-if="num==0">The number is zero</h2>
-  <h2 v-else-if="num==5">The number is five</h2>
-  <h2 v-else>The number is not zero</h2>
+  <h2>{{ name }}</h2>
+  <button v-on:click="name='Batman'">Click Me</button>
+
+  <h2>{{count}}</h2>
+  <div>
+    <button v-on:click="increment">Increment</button>
+    <button @click="decrement">Decrement</button>
+  </div>
 
 </template>
 
@@ -10,9 +15,18 @@
     name: "App", 
     data(){
       return{
-        num: 5,
+        name: "Mahin",
+        count: 0
       };
     },
+    methods: {
+      increment(){
+        this.count++
+      },
+      decrement(){
+        this.count--
+      }
+    }
 
   };
 </script>
